@@ -39,7 +39,7 @@ functions:
   spawn:
     handler: handler.spawn
     events:
-      - schedule: cron(18 17 * * ? *)
+      - schedule: cron(30 10 * * ? *)
         
   app:
     handler: index.handler
