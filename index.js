@@ -3,11 +3,14 @@
 const serverless = require('serverless-http');
 const bodyParser = require('body-parser');
 const express = require('express')
+const path = require('path');
 const app = express()
+app.set('view engine', 'pug')
+
 var AWS = require('aws-sdk');
 var TABLE_PREFIX = process.env.TABLE_PREFIX;
 
-
+// hmmm
 app.use(bodyParser.json({ strict: false }));
 
 //var ddb = new AWS.DynamoDB({apiVersion: '2012-10-08'});
@@ -68,7 +71,7 @@ function getMudData(host, port) {
 
 
 app.get('/', function (req, res) {
-  res.send('Hello World!')
+  return res.render("index");
 })
 app.get('/more', function (req, res) {
   res.send('Hefllo World!')
@@ -76,7 +79,11 @@ app.get('/more', function (req, res) {
 app.get('/dumpConnections', function (req, res) {
   return scan('connections')
   .then(result => {
-    return res.json(result.Items);
+    var rows = result.Items.map(item => {
+      item.prettyConnected = new Date(item.connected).toISOString();
+      return item;
+    })
+    return res.render("connectionLog",{Items:rows});
   })
   .catch(e => {
     return reportDynamoDbError(res, e);
@@ -91,7 +98,7 @@ app.get('/dumpConnections/html', function (req, res) {
     return reportDynamoDbError(res, e);
   })
 })
-function reportDynamoError(res, e) {
+function reportDynamoDbError(res, e) {
   return res.status(500).send("db error: "+e);
 }
 app.post('/attemptBan', (req, res) => {

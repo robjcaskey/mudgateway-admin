@@ -1,6 +1,6 @@
 #!/bin/sh
 # begin at the end by scheduling the shutdown
-echo "sudo halt" | at now + 30 minutes
+echo "sudo halt" | at now + 1450 minutes
 touch /helloWorld
 
 export MUDGATEWAY_ACCESS_KEY_ID="dummy"

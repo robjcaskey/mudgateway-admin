@@ -2,14 +2,16 @@
   "name": "mudgateway-admin",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "jade": "^1.11.0",
+    "pug": "^2.0.3",
     "serverless-domain-manager": "^2.6.5",
-    "serverless-express": "^2.0.7"
+    "serverless-express": "^2.0.7",
+    "serverless-http": "^1.6.0"
   }
 }

@@ -1,0 +1,18 @@
+html
+  head
+    title= title
+  body
+    h1 Connection Log
+    table
+      thead
+        tr
+          th Connected
+          th From
+          th To
+          th Port
+      each row in Items
+        tr
+          td= row.prettyConnected
+          td= row.srcAddress
+          td= row.host
+          td= row.port

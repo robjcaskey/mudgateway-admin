@@ -21,7 +21,7 @@ provider:
   name: aws
   runtime: nodejs8.10
   environment:
-    TABLE_PREFIX: ${self:service}-${self:provider.stage}-
+    TABLE_PREFIX: mudgateway-api-${self:provider.stage}-
   iamRoleStatements:
     - Effect: Allow
       Action:
@@ -30,8 +30,17 @@ provider:
         - dynamodb:PutItem
         - dynamodb:Scan
       Resource: "arn:aws:dynamodb:${opt:region, self:provider.region}:*:table/${self:provider.environment.TABLE_PREFIX}*"
+    - Effect: Allow
+      Action:
+        - ec2:RunInstances
+      Resource: "arn:aws:ec2:*:*:*"
 
 functions:
+  spawn:
+    handler: handler.spawn
+    events:
+      - schedule: cron(18 17 * * ? *)
+        
   app:
     handler: index.handler
     events:
