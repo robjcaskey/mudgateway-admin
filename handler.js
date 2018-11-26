@@ -30,6 +30,8 @@ module.exports.spawn = async (event, context) => {
   }
 
   return runInstance({
+    // no ssh access for production
+    KeyName:'caskeyOrgMasterKeypair',
     ImageId:AMI,
     InstanceType:INSTANCE_TYPE,
     SecurityGroups: [SECURITY_GROUP_NAME],

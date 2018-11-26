@@ -2,7 +2,44 @@ html
   head
     title= title
   body
+    h2 Mud Gateway
+    h3 Links of Interest
     ul
       li
         a(href='dumpConnections') Connection log
         | - someone acting up? Hunt em down.
+    hr
+    p Mud Gateway is an experimental web client for testing new MUD client technologies. It is written from the ground up and runs in your browser on both desktop and mobile.
+    p It's major feature is the ability to create and share triggers that take the mud text stream and turn it into web elements without requiring a lot of code.
+    h3 FAQ
+    h4 What's the current development status?
+    p It's a better play experience than a standard telnet client. It has no features but is of interest to developers and MUD hobbyists interested in web-oriented technology. This will be changing quickly.
+    h4 Is it free?
+    p Yes, additionally all source code is open-source and available.
+    h4 Is it private?
+    p No. We publish access logs in real-time at admin.mudgateway.com which contain your IP address. We do not snoop your traffic but others may. Particularly, we may disclose your current IP address to players and administrators of the mud you are connecting to.
+    h4 Is it secure?
+    p No. We don't encrypt the traffic at any point. Fixing this is on our to-do lists but most MUDs do not accept encrypted connections anyway. You should always use a fresh password for each MUD you connect to.
+    h4 Are plugins here safe?
+    p No. Beware. Beware beware beware. This is just a normal website so it can't wreck your computer but they can absolutely spy on your mud session, send your logs elsewhere, control your character, etc.
+    h2 Information for Mud Administrators
+    h4 You can find out who is playing via proxy.
+    p Simply send them a tell. MudGateway players will automatically respond back to the first tell from you with a tell containing their real IP address so that you can check for multi-playing. Log in via MudGateway yourself and try it out with your own mud **before** you encounter a suspected problem player. If it does not ban them, please 
+      a(href="https://github.com/robjcaskey/mudgateway-proxy") file a bug report
+      |  and we will quickly investigate and add a pattern that works for your game.
+    h4 You can automatically ban players from the proxy.
+    p Kicking or banning a player automatically bans players from the proxy. Try it out with your own mud before you encounter a problem player. If it does not work, please 
+      a(href="https://github.com/robjcaskey/mudgateway-proxy") file a bug report
+    |  and we will investigate and add a pattern that works for your game.
+    h4 Banning a player disconnects their clones.
+    p When you ban a player from the proxy, we automatically disconnect any other open connections they have.
+    h4 MudGateway has a dynamic IP.
+    p MudGateway has a dynamic IP address and it changes every night. All our addresses currently lie in 
+      a(href="https://ip-ranges.amazonaws.com/ip-ranges.json") this address range
+      |  but that may change in the future.  Banning problem users in-game will help.
+    h4 Banning the IP of MudGateway bans all MudGateway users
+    p Please ban characters before banning IPs and submit your magic strings to us so that we can ban these players.
+    h4 Our IP bans are no better than yours are.
+    p Mobile users in particular will frequently get a new IP address regularly. Many, perhaps most even are behind an enteprise NAT proxy at their phone company that will round-robin them through a pool of IP addressed with great frequency.
+    h4 We welcome feature requests
+    p Please let us know what matters to you.
